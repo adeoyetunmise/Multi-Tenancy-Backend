@@ -5,7 +5,7 @@ import tenantResolver from "../middleware/tenantResolver.js";
 const router = express.Router();
 const prisma = new PrismaClient();
 
-// 🚀 **Create a new tenant**
+// Create a new tenant
 router.post("/", async (req, res) => {
   try {
     const { name, databaseURI } = req.body;
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// 🚀 **Fetch all tenants**
+// Fetch all tenants
 router.get("/", async (req, res) => {
   try {
     const tenants = await prisma.tenant.findMany();
@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// 🚀 **Fetch Tenant-Specific Data**
+// Fetch Tenant-Specific Data
 router.get("/data", tenantResolver, async (req, res) => {
     try {
       res.status(200).json({ message: "Tenant data fetched", tenant: req.tenant });
@@ -42,7 +42,7 @@ router.get("/data", tenantResolver, async (req, res) => {
     }
   });
 
-// 🚀 **Update a tenant**
+// Update a tenant
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -59,7 +59,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// 🚀 **Delete a tenant**
+// Delete a tenant
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
