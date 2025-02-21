@@ -14,9 +14,10 @@ datasource db {
 }
 
 model Tenant {
-  id       String @id @map("_id") @default(auto())
+  id        String @id @default(auto()) @map("_id") @test.ObjectId
   name     String
   tenantId String @unique
   isActive Boolean @default(true)
 }
+
 
